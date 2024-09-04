@@ -3,6 +3,7 @@ package com.projeto.client.controller;
 import com.projeto.client.dto.ClientDTO;
 import com.projeto.client.service.ClientService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,7 +37,7 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<ClientDTO> addClient (@RequestBody ClientDTO c) {
+    public ResponseEntity<ClientDTO> addClient (@Valid @RequestBody ClientDTO c) {
 
         ClientDTO dto = clientService.addNewClient(c);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(c.getId()).toUri();
@@ -44,7 +45,7 @@ public class ClientController {
     }
 
     @PutMapping ("/{id}")
-    public ResponseEntity<ClientDTO> updateClientById (@PathVariable (value = "id") Long id, @RequestBody ClientDTO clientDTO) {
+    public ResponseEntity<ClientDTO> updateClientById (@PathVariable (value = "id") Long id, @Valid @RequestBody ClientDTO clientDTO) {
         ClientDTO updateClient = clientService.updateClient(id, clientDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(updateClient);
 
