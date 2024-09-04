@@ -11,6 +11,7 @@ import java.time.LocalDate;
 public class ClientDTO {
 
 
+    private Long id;
     @NotBlank (message = "You cannot pass a blank value to name!")
     private String name;
     @NotBlank (message = "You cannot pass a blank value to CPF")
@@ -21,6 +22,10 @@ public class ClientDTO {
     @PastOrPresent (message = "You cannot pass a date higher than the present date")
     private LocalDate birthDate;
     private Integer children;
+
+
+
+
 
     public ClientDTO(String name, String cpf, Double income, LocalDate birthDate, Integer children) {
         this.name = name;
@@ -37,6 +42,11 @@ public class ClientDTO {
         income = client.getIncome();
         birthDate = client.getBirthDate();
         children = client.getChildren();
+    }
+
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
