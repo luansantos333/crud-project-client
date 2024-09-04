@@ -1,5 +1,6 @@
 package com.projeto.client.model;
 
+import com.projeto.client.dto.ClientDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -19,6 +20,25 @@ public class Client {
     private LocalDate birthDate;
     private Integer children;
 
+
+    public Client(Long id, String name, String cpf, Double income, LocalDate birthDate, Integer children) {
+        this.id = id;
+        this.name = name;
+        this.cpf = cpf;
+        this.income = income;
+        this.birthDate = birthDate;
+        this.children = children;
+    }
+
+    public Client(ClientDTO dto) {
+
+        name = dto.getName();
+        cpf = dto.getCpf();
+        income = dto.getIncome();
+        birthDate = dto.getBirthDate();
+        children = dto.getChildren();
+
+    }
 
     public Long getId() {
         return id;
