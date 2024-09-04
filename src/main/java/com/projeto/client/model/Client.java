@@ -30,6 +30,10 @@ public class Client {
         this.children = children;
     }
 
+
+    public Client() {
+    }
+
     public Client(ClientDTO dto) {
 
         name = dto.getName();
