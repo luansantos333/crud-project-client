@@ -1,15 +1,24 @@
 package com.projeto.client.dto;
 
 import com.projeto.client.model.Client;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 public class ClientDTO {
 
 
+    @NotBlank (message = "You cannot pass a blank value to name!")
     private String name;
+    @NotBlank (message = "You cannot pass a blank value to CPF")
+    @Size (max = 11, message = "The maximum length for CPF is 11 characters!")
     private String cpf;
+    @Positive (message = "You cannot pass a value lower than 1")
     private Double income;
+    @PastOrPresent (message = "You cannot pass a date higher than the present date")
     private LocalDate birthDate;
     private Integer children;
 
